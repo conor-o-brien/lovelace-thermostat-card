@@ -1,4 +1,6 @@
-import {cssData} from './styles.js?v=0.1.1';
+import { deepClone } from "deep-clone-simple";
+// https://github.com/balloob/deep-clone-simple
+
 import ThermostatUI from './thermostat_card.lib.js?v=0.1.1';
 console.info("%c Thermostat Card \n%c  Version  1.2.8 ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
 class ThermostatCard extends HTMLElement {
@@ -82,6 +84,7 @@ class ThermostatCard extends HTMLElement {
   }
 
   setConfig(config) {
+    config = deepClone(config); // This is a safe and fast methodimport {cssData} from './styles.js?v=0.1.1';
     // Check config
     if (!config.entity && config.entity.split(".")[0] === 'climate') {
       throw new Error('Please define an entity');
